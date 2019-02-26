@@ -68,6 +68,9 @@ def reverse_and_complement(sequence):
 
     If `sequence` is empty, an empty string is returned.
     """
+    sequence = sequence.upper()
+    complement_code = {'A': 'U', 'U': 'A', 'C': 'G', 'G': 'C'}
+    return '' .join([complement_code[base] for base in sequence[::-1]])
     pass
 
 def get_longest_peptide(rna_sequence, genetic_code):
