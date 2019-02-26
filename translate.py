@@ -39,11 +39,16 @@ def get_reverse(sequence):
 
     If `sequence` is empty, an empty string is returned.
     """
+ #   for letter in sequence:
+ #       sequence += letter.upper()
+    sequence = sequence.upper()
     seq = ""
     for i in sequence:
         seq = i + seq
     return seq
     pass
+
+#complement_code = {'A': 'U', 'U': 'A', 'C': 'G', 'G': 'C'}
 
 def get_complement(sequence):
     """Get the complement of `sequence`.
@@ -52,6 +57,11 @@ def get_complement(sequence):
 
     If `sequence` is empty, an empty string is returned.
     """
+    for letter in sequence:
+        sequence = letter.upper()
+
+    complement_code = {'A': 'U', 'U': 'A', 'C': 'G', 'G': 'C'}
+    return '' .join([complement_code[base] for base in sequence])
     pass
 
 def reverse_and_complement(sequence):
