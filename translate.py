@@ -39,6 +39,10 @@ def get_reverse(sequence):
 
     If `sequence` is empty, an empty string is returned.
     """
+    seq = ""
+    for i in sequence:
+        seq = i + seq
+    return seq
     pass
 
 def get_complement(sequence):
