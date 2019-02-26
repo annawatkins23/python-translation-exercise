@@ -18,7 +18,7 @@ def translate_sequence(rna_sequence, genetic_code):
     if len(rna_sequence) < 3:
         protein = ""
         return protein
-    else:
+    elif len(rna_sequence)%3 == 0:
         for i in range(0, len(rna_sequence), 3):
             codon = rna_sequence[i:i + 3]
             single_codon = genetic_code[codon]
@@ -27,6 +27,28 @@ def translate_sequence(rna_sequence, genetic_code):
             else:
                 protein += single_codon
         return protein
+    else:
+        #length1 = len(rna_sequence)
+        rna_sequence = rna_sequence[:-1]
+        if len(rna_sequence)%3 == 0: 
+            for i in range(0, len(rna_sequence), 3):
+                codon = rna_sequence[i:i + 3]
+                single_codon = genetic_code[codon]
+                if single_codon == "*":
+                    break
+                else:
+                    protein += single_codon
+            return protein
+        else:
+            rna_sequence = rna_sequence[:-1]
+            for i in range(0, len(rna_sequence), 3):
+                codon = rna_sequence[i:i + 3]
+                single_codon = genetic_code[codon]
+                if single_codon == "*":
+                    break
+                else:
+                    protein += single_codon
+            return protein
     pass
 
 def get_all_translations(rna_sequence, genetic_code):
