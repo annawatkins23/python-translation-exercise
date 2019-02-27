@@ -144,10 +144,18 @@ def get_longest_peptide(rna_sequence, genetic_code):
     If no amino acids can be translated from `rna_sequence` nor its reverse and
     complement, an empty list is returned.
     """
-    return reverse_and_complement(sequence = rna_sequence)
-
-
-
+    reverse_comp_sequence = reverse_and_complement(sequence = rna_sequence)
+    forward_translation = get_all_translations(rna_sequence , genetic_code)
+#    return forward_translation
+    reverse_translation = get_all_translations(rna_sequence = reverse_comp_sequence, genetic_code = genetic_code)
+#    return reverse_translation
+    newprotein_list = forward_translation + reverse_translation
+#    return newprotein_list
+    if newprotein_list:
+        return max(newprotein_list, key=len)
+    else:
+        protein = ""
+        return protein
     pass
 
 
