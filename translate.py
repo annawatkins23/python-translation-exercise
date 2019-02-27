@@ -30,7 +30,7 @@ def translate_sequence(rna_sequence, genetic_code):
     else:
         #length1 = len(rna_sequence)
         rna_sequence = rna_sequence[:-1]
-        if len(rna_sequence)%3 == 0: 
+        if len(rna_sequence)%3 == 0:
             for i in range(0, len(rna_sequence), 3):
                 codon = rna_sequence[i:i + 3]
                 single_codon = genetic_code[codon]
@@ -65,8 +65,32 @@ def get_all_translations(rna_sequence, genetic_code):
 
     If no amino acids can be translated from `rna_sequence`, an empty list is
     returned.
+
+    This script would either need to be adjusted based on the number of expected start codons
+    or if there would be more than 10, it would be more convenient to find another method
     """
+    rna_sequence = rna_sequence.upper()
+    start_codon = "AUG"
+    start_codon_location1 = rna_sequence.find('AUG')
+    rna_sequence1 = rna_sequence[int(start_codon_location1):]
+    protein = []
+    rna_sequence_temp = rna_sequence1[3:]
+    start_codon_location2 = rna_sequence_temp.find('AUG')
+    rna_sequence2 = rna_sequence_temp[int(start_codon_location2):]
+#    protein1 = ""
+#    protein2 = ""
+#    protein = []
+    protein1 = translate_sequence(rna_sequence = rna_sequence1, genetic_code = genetic_code)
+    if protein1:
+        protein.append(protein1)
+#    return protein
+    protein2 = translate_sequence(rna_sequence = rna_sequence2, genetic_code = genetic_code)
+    if protein2:
+        protein.append(protein2)
+
+    return protein
     pass
+
 
 def get_reverse(sequence):
     """Reverse orientation of `sequence`.
@@ -120,6 +144,10 @@ def get_longest_peptide(rna_sequence, genetic_code):
     If no amino acids can be translated from `rna_sequence` nor its reverse and
     complement, an empty list is returned.
     """
+    return reverse_and_complement(sequence = rna_sequence)
+
+
+
     pass
 
 
